@@ -149,6 +149,7 @@ impl Client {
     }
 
     pub fn authenticate(&self) -> Result<Response> {
+        debug!("Auth V2 <url={}, username={}, tenant={}>", self.url(), self.username(), self.tenant());
         let mut client = match self.url.scheme() {
             "https" => {
                 let ssl = NativeTlsClient::new()?;
@@ -173,10 +174,12 @@ impl Client {
 
         match resp.status.is_success() {
             true => {
+                debug!("Successfully authenticated on {}", self.url());
                 let data: Response = serde_json::from_str(&jdata)?;
                 Ok(data)
             }
             false => {
+                error!("Authentication failed => {}", resp.status.canonical_reason().unwrap());
                 let data: ErrorResponse = serde_json::from_str(&jdata)?;
                 Err(Error::from(format!("{} {}: {}", data.error.code, data.error.title, data.error.message)))
             }

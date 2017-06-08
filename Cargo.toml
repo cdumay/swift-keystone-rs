@@ -1,0 +1,22 @@
+[package]
+name = "swift-keystone"
+version = "0.1.0"
+authors = ["Cedric Dumay <cedric.dumay@gmail.com>"]
+license = "MIT"
+description = "A bundle of HTTP clients to use on Swift keystone auth"
+repository = "https://github.com/cdumay/swift-keystone-rs.git"
+keywords = ["serde", "serialization", "swift", "auth"]
+readme = "README.md"
+include = ["Cargo.toml", "src/*.rs", "README.md", "LICENSE"]
+
+[dependencies]
+chrono = { version = "0.3", features = ["serde"] }
+hyper = "0.10"
+hyper-native-tls = "0.2.2"
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
+url = "*"
+
+[features]
+default = []

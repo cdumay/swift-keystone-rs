@@ -10,7 +10,7 @@ swift-keystone = { git = "https://github.com/cdumay/swift-keystone-rs.git" }
 ### Auth v1
 Not available yet
 
-## Auth v2
+### Auth v2
 
 ```rust
 extern crate swift_keystone;

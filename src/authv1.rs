@@ -1,6 +1,6 @@
 use ::error::Error;
 use ::Result;
-use hyper::header::{Headers, ContentType, Accept, UserAgent};
+use hyper::header::{Headers, UserAgent};
 use hyper::net::HttpsConnector;
 use hyper;
 use std::str::FromStr;

@@ -1,5 +1,5 @@
 use url;
-use std::{fmt, io};
+use std::{fmt, io, string};
 use hyper;
 use serde_json;
 use hyper_native_tls;
@@ -11,7 +11,12 @@ pub enum Error {
     HttpError(hyper::Error),
     IOError(io::Error),
     JSONError(serde_json::Error),
-    TLSError(hyper_native_tls::native_tls::Error)
+    TLSError(hyper_native_tls::native_tls::Error),
+    Utf8Error(string::FromUtf8Error),
+}
+
+impl From<string::FromUtf8Error> for Error {
+    fn from(error: string::FromUtf8Error) -> Error { Error::Utf8Error(error) }
 }
 
 impl From<url::ParseError> for Error {
@@ -49,6 +54,7 @@ impl fmt::Display for Error {
             Error::IOError(ref e) => e.fmt(f),
             Error::JSONError(ref e) => e.fmt(f),
             Error::TLSError(ref e) => e.fmt(f),
+            Error::Utf8Error(ref e) => e.fmt(f),
         }
     }
 }

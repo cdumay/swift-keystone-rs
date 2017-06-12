@@ -30,10 +30,6 @@ impl Client {
     pub fn new(url: &'static str, username: &'static str, password: &'static str, timeout: Option<Duration>) -> Result<Client> {
         let mut headers = Headers::new();
 
-        // Content-Type: application/json
-        headers.set(ContentType::json());
-        // Accept: application/json
-        headers.set(Accept::json());
         // User-Agent: CARGO_PKG_NAME/CARGO_PKG_VERSION
         headers.set(UserAgent(format!("{}/{}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"))));
         // auth headers

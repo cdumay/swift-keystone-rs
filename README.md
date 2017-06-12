@@ -39,5 +39,9 @@ fn main() {
 }
 ```
 
+### Auth v3
+
+Coming soon...
+
 ## License
 Licensed under MIT license ([LICENSE-MIT](LICENSE) or http://opensource.org/licenses/MIT)
